@@ -6,6 +6,8 @@ import json
 from datetime import date
 
 def index(request):   
+    if 'mobile' in request.COOKIES:
+        return render(request, 'order.html', {}) 
     return render(request, 'index.html', {})   
     
 
@@ -41,8 +43,41 @@ def retrieve(request):
         ) 
 
     order = Order.objects.filter(mobile=request.POST.get('mobile'))
-    return render(request, 'previous.html', {'order':order}) 
+    response= render(request, 'previous.html', {'order':order})   
+    response.set_cookie('mobile',value=request.POST.get('mobile')) 
+    response.set_cookie('flat',value=request.POST.get('flat')) 
+    response.set_cookie('society',value=request.POST.get('society')) 
+    response.set_cookie('name',value=request.POST.get('name')) 
+    return response
+
+def post(request):
+    response_data = {}
+   
+    if request.POST.get('action') == 'post':	
+        mobile  = request.COOKIES['mobile']
+        society  = request.COOKIES['society']
+        flat  = request.COOKIES['flat']
+        name  = request.COOKIES['name']
+        choice = request.POST.get('choice')
+        qty = request.POST.get('qty')
+        price = request.POST.get('price')
     
+        response_data['name'] = name
+        response_data['qty'] = qty
+
+        Order.objects.create(
+        name = name,
+        mobile= mobile,
+        flat= flat,
+        milk_choice= choice,
+        quantity= qty,
+        society=society,
+        price=price,
+        status="unpaid"
+        ) 
+
+    order = Order.objects.filter(mobile=request.COOKIES['mobile'])
+    return render(request, 'previous.html', {'order':order}) 
 
 def pay(request):
     response_data = {}

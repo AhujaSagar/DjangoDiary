@@ -21,16 +21,38 @@ function CalculatePrice(){
     var choice=choiceAll.options[choiceAll.selectedIndex].value;
     var price;
     switch(choice){
-        case "Taaza": price=44;
+        case "Taaza": price=45;
         break;
-        case "Buffalo": price=56;
+        case "Buffalo": price=58;
         break;
-        case "Cow": price=47;
+        case "Cow": price=48;
+        break;
+        case "Gold": price=56;
         break;
         default:price=44;
     }
-    document.getElementById("price").innerText=Number(qty)*Number(price);
+    document.getElementById("price").innerText=Math.ceil(Number(qty)*Number(price));
 }
+
+$(document).on('submit', '#short-form',function(e){
+    $.ajax({
+        type:'POST',
+        url:'post',
+        data:{
+            choice:$('#choice').val(),
+            qty:$('#qty').html(),
+            price: $('#price').html(),
+            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+            action: 'post'
+        },
+        success:function(json){
+            alert("Please Paytm/Google Pay on 9321612921");
+        },
+        error : function(xhr,errmsg,err) {
+        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+    }
+    });
+});
 
 $(document).on('submit', '#post-form',function(e){
     $.ajax({

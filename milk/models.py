@@ -14,4 +14,3 @@ class Order(models.Model):
     price= models.IntegerField()
     status=models.CharField(max_length=10)
 
-    # on submit click on the product entry page, it redirects to the url below. 
