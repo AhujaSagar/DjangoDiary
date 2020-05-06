@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>  
+    <script src="{% static '/main.js' %}?version=1"></script>  
+    {% include 'navbar.html' %}
+    <form method="post" action="retrieve" id="post-form">
+        {% csrf_token %}
+        <div class="col-6">
+            <div class="card">
+                <h5 class="card-header info-color white-text text-center py-4">
+                    <strong>New Order</strong>
+                </h5>
+            </div>
+            <div class="form-group">    
+                <label for="name">Name: </label>
+                <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name"/>
+            </div>
+            <div class="form-group">
+                <label for="flat">Flat:</label>
+                <div class="row">
+                    <div class="col-6">
+                        <select class="custom-select ml-2 ml-sm-0" id="building">
+                            <option id="Sapphire" selected>Sapphire</option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <input type="number" class="form-control" id="flat" name="flat" placeholder="Enter your Flat no."/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mobile">Mobile:</label>
+                <input type="number" class="form-control" id="mobile" name="mobile" placeholder="Enter your Mobile Number"/>
+            </div>
+            <div class="form-group">
+                <label for="choice">Choice:</label>
+                <select class="custom-select ml-2 ml-sm-0" id="choice" onchange="CalculatePrice()">
+                    <option value="Taaza" selected>Amul Taaza</option>
+                    <option value="Cow">Amul Cow</option>
+                    <option value="Buffalo">Amul Buffalo</option>
+                </select>
+            </div>
+            <label for="qty">Quantity:</label>
+            <div class="form-group form-inline">
+                <button type="button" class="btn btn-light" onclick="AddQuantity()">+</button>
+                <div id="qty">0.5</div>
+                <button type="button" class="btn btn-light" onclick="SubractQuantity()">-</button>
+            </div>
+            <div class="form-inline">
+            Total Amount: <div id="price" class="textarea">22</div> Rs/-
+            </div> 
+            <button type="submit" class="btn btn-primary">Place Order</button>
+        </div>
+    </form>
+    <div class="posts" id="posts"></div>
+</html>
