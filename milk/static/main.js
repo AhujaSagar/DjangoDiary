@@ -31,6 +31,7 @@ function CalculatePrice(){
     }
     document.getElementById("price").innerText=Number(qty)*Number(price);
 }
+
 $(document).on('submit', '#post-form',function(e){
     $.ajax({
         type:'POST',

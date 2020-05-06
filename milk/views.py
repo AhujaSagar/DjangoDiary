@@ -5,7 +5,7 @@ from django.http import JsonResponse
 import json
 from datetime import date
 
-def index(request):
+def index(request):   
     return render(request, 'index.html', {})   
     
 
@@ -15,8 +15,8 @@ def show(request):
 
 def retrieve(request):
     response_data = {}
-
-    if request.POST.get('action') == 'post':
+   
+    if request.POST.get('action') == 'post':	
         name = request.POST.get('name')
         mobile = request.POST.get('mobile')
         flat = request.POST.get('flat')
@@ -25,24 +25,24 @@ def retrieve(request):
         price = request.POST.get('price')
         society = request.POST.get('society')
 
-
+        
         response_data['name'] = name
         response_data['qty'] = qty
 
         Order.objects.create(
-            name = name,
-            mobile= mobile,
-            flat= flat,
-            milk_choice= choice,
-            quantity= qty,
-            society=society,
-            price=price,
-            status="unpaid"
-            )
-        # print(JsonResponse(response_data))
-        # return HttpResponse(json.dumps(response_data))
+        name = name,
+        mobile= mobile,
+        flat= flat,
+        milk_choice= choice,
+        quantity= qty,
+        society=society,
+        price=price,
+        status="unpaid"
+        ) 
+
     order = Order.objects.filter(mobile=request.POST.get('mobile'))
-    return render(request, 'previous.html', {'order':order})   
+    return render(request, 'previous.html', {'order':order}) 
+    
 
 def pay(request):
     response_data = {}
