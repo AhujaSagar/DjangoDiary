@@ -44,10 +44,10 @@ def retrieve(request):
 
     order = Order.objects.filter(mobile=request.POST.get('mobile'))
     response= render(request, 'previous.html', {'order':order})   
-    response.set_cookie('mobile',value=request.POST.get('mobile')) 
-    response.set_cookie('flat',value=request.POST.get('flat')) 
-    response.set_cookie('society',value=request.POST.get('society')) 
-    response.set_cookie('name',value=request.POST.get('name')) 
+    response.set_cookie('mobile',value=request.POST.get('mobile'),expires ="Mon, 03 Aug 2020 07:51:53 GMT" ) 
+    response.set_cookie('flat',value=request.POST.get('flat'),expires ="Mon, 03 Aug 2020 07:51:53 GMT" ) 
+    response.set_cookie('society',value=request.POST.get('society'),expires ="Mon, 03 Aug 2020 07:51:53 GMT" ) 
+    response.set_cookie('name',value=request.POST.get('name'),expires ="Mon, 03 Aug 2020 07:51:53 GMT" ) 
     return response
 
 def post(request):

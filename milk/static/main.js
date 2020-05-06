@@ -11,15 +11,23 @@ function SubractQuantity(request){
     var cluster=document.getElementById("qty");
     var qty=cluster.innerText;
     if(qty>0.5){
-    cluster.innerText=Number(qty)-0.5;
-    CalculatePrice();
+    var choiceAll=document.getElementById("choice");
+    var choice=choiceAll.options[choiceAll.selectedIndex].value;
+    if(choice=="Dahi" || choice=="Buttermilk")
+    {
+        cluster.innerText=Number(qty)-1;
+    }else{
+        cluster.innerText=Number(qty)-0.5;
     }
+    CalculatePrice();
+}
 }
 function CalculatePrice(){
-    var qty=document.getElementById("qty").innerText;
+
     var choiceAll=document.getElementById("choice");
     var choice=choiceAll.options[choiceAll.selectedIndex].value;
     var price;
+    var flag=false;
     switch(choice){
         case "Taaza": price=45;
         break;
@@ -29,8 +37,14 @@ function CalculatePrice(){
         break;
         case "Gold": price=56;
         break;
-        default:price=44;
+        case "Dahi": price=27;flag=true;
+        break;
+        case "Buttermilk": price=12;flag=true;
+        break;
+        default:price=45;
     }
+    var qty=document.getElementById("qty").innerText;
+    if(flag){  document.getElementById("qty").innerText=Math.ceil(qty); qty=Math.ceil(qty)}
     document.getElementById("price").innerText=Math.ceil(Number(qty)*Number(price));
 }
 
@@ -72,16 +86,7 @@ $(document).on('submit', '#post-form',function(e){
         success:function(json){
             alert("Please Paytm/Google Pay on 9321612921");
 
-            // document.getElementById("post-form").reset();
-            // $(".posts").prepend('<div class="col-md-6">'+
-            //     '<div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">' +
-            //         '<div class="col p-4 d-flex flex-column position-static">' +
-            //             '<h3 class="mb-0">' + json.qty + '</h3>' +
-            //             '<p class="mb-auto">' + json.name + '</p>' +
-            //         '</div>' +
-            //     '</div>' +
-            // '</div>' 
-            // )
+     
         },
         error : function(xhr,errmsg,err) {
         console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
