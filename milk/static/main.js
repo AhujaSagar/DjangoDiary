@@ -66,6 +66,28 @@ $(document).on('submit', '#post-form',function(e){
     });
 });
 
+
+// $(document).on('submit', '#post-form',function(e){
+//     $.ajax({
+//         type:'POST',
+//         url:'retrieve',
+//         data:{
+//             choice:$('#choice').val(),
+//             qty:$('#qty').html(),
+//             price: $('#price').html(),
+//             csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+//             action: 'post'
+//         },
+//         success:function(json){
+//             alert("Please Paytm/Google Pay on 9321612921");
+//         },
+//         error : function(xhr,errmsg,err) {
+//         console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+//     }
+//     });
+// });
+
+
 $(document).ready(function () {
 $("div.clickable-row").click(
     function () {

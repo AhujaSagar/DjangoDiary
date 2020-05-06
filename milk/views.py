@@ -5,7 +5,9 @@ from django.http import JsonResponse
 import json
 from datetime import date
 
-def index(request):
+def index(request):   
+    if 'mobile' in request.COOKIES:
+        return render(request, 'order.html', {}) 
     return render(request, 'index.html', {})   
     
 
@@ -16,33 +18,59 @@ def show(request):
 def retrieve(request):
     response_data = {}
 
-    if request.POST.get('action') == 'post':
-        name = request.POST.get('name')
-        mobile = request.POST.get('mobile')
-        flat = request.POST.get('flat')
-        choice = request.POST.get('choice')
-        qty = request.POST.get('qty')
-        price = request.POST.get('price')
-        society = request.POST.get('society')
+    name = request.POST.get('name')
+    mobile = request.POST.get('mobile')
+    flat = request.POST.get('flat')
+    choice = request.POST.get('choice')
+    qty = request.POST.get('qty')
+    price = request.POST.get('price')
+    society = request.POST.get('society')
 
+    Order.objects.create(
+    name = name,
+    mobile= mobile,
+    flat= flat,
+    milk_choice= choice,
+    quantity= qty,
+    society=society,
+    price=price,
+    status="unpaid"
+    ) 
 
-        response_data['name'] = name
-        response_data['qty'] = qty
-
-        Order.objects.create(
-            name = name,
-            mobile= mobile,
-            flat= flat,
-            milk_choice= choice,
-            quantity= qty,
-            society=society,
-            price=price,
-            status="unpaid"
-            )
-        # print(JsonResponse(response_data))
-        # return HttpResponse(json.dumps(response_data))
     order = Order.objects.filter(mobile=request.POST.get('mobile'))
-    return render(request, 'previous.html', {'order':order})   
+    #expires ="Mon, 03 Aug 2020 07:51:53 GMT" 
+    # response.set_cookie('mobile',value=request.POST.get('mobile')) 
+    # response.set_cookie('flat',value=request.POST.get('flat')) 
+    # response.set_cookie('society',value=request.POST.get('society')) 
+    # response.set_cookie('name',value=request.POST.get('name')) 
+    # response= render(request, 'previous.html', {'order':order})   
+
+    return render(request, 'previous.html', {'order':order})  
+    
+#  if 'mobile' in request.COOKIES:
+#         mobile  = request.COOKIES['mobile']
+#         society  = request.COOKIES['society']
+#         flat  = request.COOKIES['flat']
+#         name  = request.COOKIES['name']
+#         choice = request.POST.get('choice')
+#         qty = request.POST.get('qty')
+#         price = request.POST.get('price')
+
+#         Order.objects.create(
+#         name = name,
+#         mobile= mobile,
+#         flat= flat,
+#         milk_choice= choice,
+#         quantity= qty,
+#         society=society,
+#         price=price,
+#         status="unpaid"
+#         ) 
+
+#         order = Order.objects.filter(mobile=request.COOKIES['mobile'])
+#         return render(request, 'previous.html', {'order':order})   
+
+#     else:
 
 def pay(request):
     response_data = {}

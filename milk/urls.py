@@ -9,4 +9,7 @@ urlpatterns = [
     path('show', show, name='show'),
     path('retrieve', retrieve, name='retrieve'),
     path('pay', pay, name='pay'),
+    # path('set', setcookie, name='setcookie'),
+    # path('get', getcookie, name='getcookie'),
+
 ]
