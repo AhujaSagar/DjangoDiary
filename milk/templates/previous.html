@@ -6,14 +6,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>  
     <script src="{% static '/main.js' %}?version=1"></script>  
+
     {% include 'navbar.html' %}
     <div class="card">
         <h5 class="card-header info-color white-text text-center py-4 bg-info text-white">
             <strong>Hello {{order.first.name}}! Here are your Placed Orders:</strong>
         </h5>
     </div>
-<div class="table">
-    <div class="row Header">
+<div class="table table-striped">
+    <div class="row Header font-weight-bold bg-secondary text-white">
         <div class="col-1">
             <div class="cell head"></div>
         </div>
