@@ -26,7 +26,7 @@ SECRET_KEY = '8z4t8&eq%lels&-(-f(x%0o4db*kxm30(*xcre#ni2@^3(x&53'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['milk-service.herokuapp.com']
+ALLOWED_HOSTS = ['milk-service.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    # 'whitenoise.runserver_nostatic',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
 ]
 
