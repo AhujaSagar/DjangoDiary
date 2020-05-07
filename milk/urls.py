@@ -2,7 +2,7 @@ from django.urls import path
 
 from . import views
 
-from .views import index,show,retrieve,pay,post
+from .views import index,show,retrieve,pay,post,delete
 from django.conf import settings
 
 
