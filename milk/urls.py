@@ -13,7 +13,7 @@ urlpatterns = [
     path('pay', pay, name='pay'),
     path('post', post, name='post'),
 ]
-# if not settings.DEBUG:
-#     urlpatterns += patterns('',
-#         (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
-#     )
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+    )
