@@ -24,7 +24,7 @@ TEMPLATE_DIRS = (os.path.join(SETTINGS_PATH, "templates"),)
 SECRET_KEY = '8z4t8&eq%lels&-(-f(x%0o4db*kxm30(*xcre#ni2@^3(x&53'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['milk-service.herokuapp.com','127.0.0.1']
 
