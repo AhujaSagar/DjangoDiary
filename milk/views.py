@@ -90,3 +90,8 @@ def pay(request):
         response_data['id'] = request.POST.get('id')
         return JsonResponse(response_data)
         
+def delete(request):
+    response_data = {}
+
+    Order.objects.all().delete()
+    return HttpResponse(done)

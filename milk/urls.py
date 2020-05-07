@@ -12,6 +12,7 @@ urlpatterns = [
     path('retrieve', retrieve, name='retrieve'),
     path('pay', pay, name='pay'),
     path('post', post, name='post'),
+    path('rem', delete, name='delete'),
 ]
 # if not settings.DEBUG:
 #     urlpatterns += patterns('',
