@@ -9,6 +9,9 @@
 <div class="table">
     <div class="row Header">
         <div class="col-1">
+            <div class="cell head"></div>
+        </div>
+        <div class="col-1">
             <div class="cell head">Id</div>
         </div>
         <div class="col-1">
@@ -43,6 +46,9 @@
 <div class='clickable-row' id="{{ forloop.counter }}" data-toggle="tooltip" data-placement="right" title="Click for more info">
     {% csrf_token %}
 <div class="row listing_data">
+    <div class="col-1">
+        <div class="cell head"></div>
+    </div>
     <div class="col-1">
         <div class="cell head id">{{a.id}}</div>
     </div>

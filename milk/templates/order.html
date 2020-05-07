@@ -6,14 +6,15 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>  
     <script src="{% static '/main.js' %}?version=1"></script>  
     {% include 'navbar.html' %}
+    
+    <div class="card">
+        <h5 class="card-header info-color white-text text-center bg-info text-white py-4">
+            <strong>Hello {{name}}! Please place tomorrow's order.</strong>
+        </h5>
+    </div>
     <form method="post" action="post" id="short-form">
         {% csrf_token %}
-        <div class="col-6">
-            <div class="card">
-                <h5 class="card-header info-color white-text text-center bg-info text-white py-4">
-                    <strong>New Order</strong>
-                </h5>
-            </div>
+        <div class="container">
             <div class="form-group">
                 <label for="choice">Choice:</label>
                 <select class="custom-select ml-2 ml-sm-0" id="choice" onchange="CalculatePrice()">

@@ -7,7 +7,8 @@ from datetime import date
 
 def index(request):   
     if 'mobile' in request.COOKIES:
-        return render(request, 'order.html', {}) 
+        name=request.COOKIES['name']
+        return render(request, 'order.html', {'name':name}) 
     return render(request, 'index.html', {})   
     
 

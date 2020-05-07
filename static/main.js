@@ -60,7 +60,7 @@ $(document).on('submit', '#short-form',function(e){
             action: 'post'
         },
         success:function(json){
-            alert("Please Paytm/Google Pay on 9321612921");
+            alert("Please Paytm/Google Pay/Phonepe on 9321612921");
         },
         error : function(xhr,errmsg,err) {
         console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
@@ -84,9 +84,7 @@ $(document).on('submit', '#post-form',function(e){
             action: 'post'
         },
         success:function(json){
-            alert("Please Paytm/Google Pay on 9321612921");
-
-     
+            alert("Please Paytm/Google Pay/Phonepe on 9321612921");
         },
         error : function(xhr,errmsg,err) {
         console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
@@ -115,7 +113,7 @@ function Pay(id){
             action: 'post'
         },
         success:function(json){
-            alert("Paid")
+            
             location.reload();
         },
         error : function(xhr,errmsg,err) {

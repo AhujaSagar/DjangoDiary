@@ -6,70 +6,56 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>  
     <script src="{% static '/main.js' %}?version=1"></script>  
     {% include 'navbar.html' %}
+    <div class="card">
+        <h5 class="card-header info-color white-text text-center py-4 bg-info text-white">
+            <strong>Hello {{order.first.name}}! Here are your Placed Orders:</strong>
+        </h5>
+    </div>
 <div class="table">
     <div class="row Header">
         <div class="col-1">
-            <div class="cell head">Id</div>
+            <div class="cell head"></div>
         </div>
-        <div class="col-1">
-            <div class="cell head">Name</div>
-        </div>
-        <div class="col-1">
-            <div class="cell head">Number</div>
-        </div>
-        <div class="col-1">
-            <div class="cell head">Society</div>
-        </div>
-        <div class="col-1">
-            <div class="cell head">Flat</div>
-        </div>
-        <div class="col-1">
-            <div class="cell head">Quantity</div>
-        </div>
-        <div class="col-1">
+
+        <div class="col-2">
             <div class="cell head">Choice</div>
         </div>
-        <div class="col-1">
+
+        <div class="col-2">
+            <div class="cell head">Quantity</div>
+        </div>
+
+        <div class="col-2">
             <div class="cell head">Price</div>
         </div> 
-        <div class="col-2">
+
+        <div class="col-4">
             <div class="cell head">Date</div>
         </div> 
         <div class="col-1">
-            <div class="cell head">Status</div>
+            <div class="cell head"></div>
         </div>
     </div>
 {% for a in order %}
 <div class="row listing_data">
     <div class="col-1">
-        <div class="cell head id">{{a.id}}</div>
+        <div class="cell head id"></div>
     </div>
-    <div class="col-1">
-        <div class="cell">{{ a.name }}</div>
-    </div>
-    <div class="col-1">
-        <div class="cell">{{ a.mobile }}</div>
-    </div>
-    <div class="col-1">
-        <div class="cell">{{ a.society }}</div>
-    </div>  
-    <div class="col-1">
-        <div class="cell">{{ a.flat }}</div>
-    </div>
-    <div class="col-1">
-        <div class="cell">{{ a.quantity }}</div>
-    </div>
-    <div class="col-1">
+   
+    <div class="col-2">
         <div class="cell">{{ a.milk_choice }}</div>
     </div>
-    <div class="col-1">
+    <div class="col-2">
+        <div class="cell">{{ a.quantity }}</div>
+    </div>
+    <div class="col-2">
         <div class="cell">{{ a.price }}</div>
     </div>  
-     <div class="col-2">
+     <div class="col-4">
         <div class="cell">{{ a.date }}</div>
     </div>  
     <div class="col-1">
-        <div class="cell">{{ a.status }}</div>
+        <div class="cell head id"></div>
     </div>
 </div>
 {% endfor %}

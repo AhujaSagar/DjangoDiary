@@ -10,7 +10,7 @@ class Order(models.Model):
     milk_choice = models.CharField(max_length=40)
     quantity = models.FloatField()
     society= models.CharField(max_length=40)
-    date= models.DateTimeField(auto_now=True)
+    date= models.DateTimeField(auto_now_add=True)
     price= models.IntegerField()
     status=models.CharField(max_length=10)
 
