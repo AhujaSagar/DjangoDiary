@@ -14,7 +14,9 @@
     </div>
 <div class="table">
     <div class="row Header">
-        <div class="container">
+        <div class="col-1">
+            <div class="cell head"></div>
+        </div>
 
         <div class="col-3">
             <div class="cell head">Choice</div>
@@ -28,20 +30,20 @@
             <div class="cell head">Price</div>
         </div> 
 
-        <div class="col-5">
+        <div class="col-4">
             <div class="cell head">Date</div>
-        
+
         </div> 
-        
-        </div>
+
     </div>
-{% for a in order %}
+
+    {% for a in order %}
 <div class="row listing_data">
     <div class="col-1">
         <div class="cell head id"></div>
     </div>
    
-    <div class="col-2">
+    <div class="col-3">
         <div class="cell">{{ a.milk_choice }}</div>
     </div>
     <div class="col-2">
@@ -53,11 +55,9 @@
      <div class="col-4">
         <div class="cell">{{ a.date }}</div>
     </div>  
-    <div class="col-1">
-        <div class="cell head id"></div>
-    </div>
+
 </div>
 {% endfor %}
 </div>
-<div><button class="btn btn-info" onclick="window.location.href='/milk'">Add New Order</button></div>
+<div><button class="btn btn-info btn-lg" onclick="window.location.href='/milk'">Add New Order</button></div>
 </html>
