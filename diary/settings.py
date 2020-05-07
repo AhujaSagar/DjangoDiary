@@ -26,7 +26,7 @@ SECRET_KEY = '8z4t8&eq%lels&-(-f(x%0o4db*kxm30(*xcre#ni2@^3(x&53'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['milk-service.herokuapp.com']
 
 
 # Application definition
