@@ -94,4 +94,4 @@ def delete(request):
     response_data = {}
 
     Order.objects.all().delete()
-    return HttpResponse(done)
+    return HttpResponse('done')
