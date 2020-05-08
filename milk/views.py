@@ -18,7 +18,13 @@ def index(request):
     
 
 def show(request):
-    order = Order.objects.all().order_by('flat')
+    today = datetime.now().date()
+    yesterday = today - timedelta(1)
+    tomorrow= today + timedelta(1)
+    yesterday_start = datetime.combine(yesterday, time())
+    today_end = datetime.combine(tomorrow, time())
+
+    order = Order.objects.all().filter(date__gte=yesterday_start, date__lte=today_end).order_by('-date')
     return render(request, 'show.html', {'order':order})   
 
 def retrieve(request):
@@ -90,6 +96,17 @@ def pay(request):
 
     if request.POST.get('action') == 'post':
         temp=Order.objects.all().filter(name= request.POST.get('id'))
+        for i in temp:
+            i.status = 'Paid'
+            i.save()
+            response_data['id'] = request.POST.get('id')
+        return JsonResponse(response_data)
+
+def orderpay(request):
+    response_data = {}
+
+    if request.POST.get('action') == 'post':
+        temp=Order.objects.all().filter(id= request.POST.get('id'))
         for i in temp:
             i.status = 'Paid'
             i.save()

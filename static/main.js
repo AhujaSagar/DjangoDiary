@@ -98,6 +98,11 @@ $(".clickable-row").click(
         id = $(this).attr("id");
         Pay(id);
     });
+$(".clickable-show").click(
+    function () {
+        id = $(this).attr("id");
+        OrderPay(id);
+    });
 });
 
 function Pay(id){
@@ -107,6 +112,27 @@ function Pay(id){
     $.ajax({
         type:'POST',
         url:'pay',
+        data:{
+            id:Id,
+            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+            action: 'post'
+        },
+        success:function(json){
+            alert('paid')
+            location.reload();
+        },
+        error : function(xhr,errmsg,err) {
+        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+    }
+    });
+}
+function OrderPay(id){
+    masterId = document.getElementById(id);
+    IdClass = masterId.getElementsByClassName('id');    
+    Id = $(IdClass[0]).text();
+    $.ajax({
+        type:'POST',
+        url:'orderpay',
         data:{
             id:Id,
             csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
