@@ -84,6 +84,7 @@ WSGI_APPLICATION = 'diary.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
+import dj_database__url
 
 DATABASES = {
       'default': dj_database_url.config(
@@ -95,9 +96,8 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
-import dj_database__url
-db_from_env= dj_database_url.config()
-databases['default'].update(db_from_env)
+# db_from_env= dj_database_url.config()
+# databases['default'].update(db_from_env)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
