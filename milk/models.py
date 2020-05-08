@@ -6,7 +6,7 @@ from django.urls import reverse
 class Order(models.Model):
     name = models.CharField(max_length=200)
     flat = models.IntegerField()
-    mobile = models.IntegerField()
+    mobile = models.CharField(max_length=14)
     milk_choice = models.CharField(max_length=40)
     quantity = models.FloatField()
     society= models.CharField(max_length=40)

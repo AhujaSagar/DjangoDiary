@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -84,12 +85,25 @@ WSGI_APPLICATION = 'diary.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-import dj_database__url
+import dj_database_url
 
 DATABASES = {
-      'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
+       'default': {
+
+        'ENGINE': 'django.db.backends.postgresql',
+
+        'NAME': 'flfwwhhz',
+
+        'USER': 'flfwwhhz',
+
+        'PASSWORD': 'ZcLtAiX1hFmISkYorOsy9VVXhXMcLY-E',
+
+        'HOST': 'rajje.db.elephantsql.com',
+
+        'PORT': '5432',
+
+    }
+
 }
 
 
@@ -143,3 +157,5 @@ STATICFILES_DIRS = [
 ]
 
 # STATICFILES_STORAGE = 'whitenoise.django.CompressedManifestStaticFilesStorage'
+
+# django_heroku.settings(locals())
