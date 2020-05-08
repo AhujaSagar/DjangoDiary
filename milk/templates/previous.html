@@ -7,58 +7,35 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>  
     <script src="{% static '/main.js' %}?version=1"></script>  
 
-    {% include 'navbar.html' %}
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-toggler">
+        <a class="navbar-brand mr-auto">Yogidham Milk Service</a>
+        <a class="navbar-nav  mr-auto text-info" href="../milk/">New Order</a>
+        <div class="vertical_line"></div>
+    </nav>
     <div class="card">
         <h5 class="card-header info-color white-text text-center py-4 bg-info text-white">
             <strong>Hello {{order.first.name}}! Here are your Placed Orders:</strong>
         </h5>
     </div>
-<div class="table table-striped">
-    <div class="row Header font-weight-bold bg-secondary text-white">
-        <div class="col-1">
-            <div class="cell head"></div>
-        </div>
-
-        <div class="col-3">
-            <div class="cell head">Choice</div>
-        </div>
-
-        <div class="col-2">
-            <div class="cell head">Quantity</div>
-        </div>
-
-        <div class="col-2">
-            <div class="cell head">Price</div>
-        </div> 
-
-        <div class="col-4">
-            <div class="cell head">Date</div>
-
-        </div> 
-
+    <div class="container">
+    <table class="table table-striped">
+        <tr>
+            <th>Choice</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Date</th>
+        </tr>
+        {% for a in order %}
+        <tr>
+            <div class="row listing_data">    
+                <td>{{ a.milk_choice }}</td>
+                <td>{{ a.quantity }}</td>
+                <td>{{ a.price }}</td>
+                <td>{{ a.date }}</td>
+            </div>  
+        </tr>
+    {% endfor %}
+    </table>
     </div>
-
-    {% for a in order %}
-<div class="row listing_data">
-    <div class="col-1">
-        <div class="cell head id"></div>
-    </div>
-   
-    <div class="col-3">
-        <div class="cell">{{ a.milk_choice }}</div>
-    </div>
-    <div class="col-2">
-        <div class="cell">{{ a.quantity }}</div>
-    </div>
-    <div class="col-2">
-        <div class="cell">{{ a.price }}</div>
-    </div>  
-     <div class="col-4">
-        <div class="cell">{{ a.date }}</div>
-    </div>  
-
-</div>
-{% endfor %}
-</div>
-<div><button class="btn btn-info btn-lg" onclick="window.location.href='/milk'">Add New Order</button></div>
+    <div><button class="btn btn-info btn-lg" onclick="window.location.href='/milk'">Add New Order</button></div>
 </html>

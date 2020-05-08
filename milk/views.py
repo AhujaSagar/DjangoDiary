@@ -4,6 +4,11 @@ from .models import Order
 from django.http import JsonResponse      
 import json
 from datetime import date
+from django.db.models import Avg, Count, Min, Sum
+from datetime import datetime, timedelta, time
+from django.utils import timezone
+import pytz
+
 
 def index(request):   
     if 'mobile' in request.COOKIES:
@@ -84,10 +89,11 @@ def pay(request):
     response_data = {}
 
     if request.POST.get('action') == 'post':
-        temp=Order.objects.get(id = request.POST.get('id'))
-        temp.status = 'Paid'
-        temp.save()
-        response_data['id'] = request.POST.get('id')
+        temp=Order.objects.all().filter(name= request.POST.get('id'))
+        for i in temp:
+            i.status = 'Paid'
+            i.save()
+            response_data['id'] = request.POST.get('id')
         return JsonResponse(response_data)
         
 def delete(request):
@@ -95,3 +101,15 @@ def delete(request):
 
     Order.objects.all().delete()
     return HttpResponse('done')
+
+def analyse(request):
+    today = datetime.now().date()
+    tomorrow = today + timedelta(1)
+    today_start = datetime.combine(today, time())
+    today_end = datetime.combine(tomorrow, time())
+
+    price=Order.objects.values('status').annotate(amount=Sum('price')).filter(date__lte=today_end, date__gte=today_start)
+    quantity=Order.objects.values('milk_choice').annotate(quantity=Sum('quantity')).filter(date__lte=today_end, date__gte=today_start)
+    individual=Order.objects.values('name').annotate(payment=Sum('price')).filter(date__lte=today_end, date__gte=today_start,status="unpaid")
+
+    return render(request, 'summary.html', {'quantity':list(quantity),'price':list(price),'individual':list(individual)})

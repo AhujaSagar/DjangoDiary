@@ -6,8 +6,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>  
     <script src="{% static '/main.js' %}?version=1"></script>  
-    {% include 'navbar.html' %}
-    
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-toggler">
+        <a class="navbar-brand mr-auto">Yogidham Milk Service</a>
+        <a class="navbar-nav  mr-auto text-info" href="../milk/post">Previous orders</a>
+        <div class="vertical_line"></div>
+    </nav>  
     <div class="card">
         <h5 class="card-header info-color white-text text-center bg-info text-white py-4">
             <strong>Hello {{name}}! Please place tomorrow's order.</strong>

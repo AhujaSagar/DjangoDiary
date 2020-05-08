@@ -93,7 +93,7 @@ $(document).on('submit', '#post-form',function(e){
 });
 
 $(document).ready(function () {
-$("div.clickable-row").click(
+$(".clickable-row").click(
     function () {
         id = $(this).attr("id");
         Pay(id);
@@ -113,7 +113,7 @@ function Pay(id){
             action: 'post'
         },
         success:function(json){
-            
+            alert('paid')
             location.reload();
         },
         error : function(xhr,errmsg,err) {
