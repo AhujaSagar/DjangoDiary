@@ -1,5 +1,5 @@
 .scrollbar{
-    overflow: auto;
+    overflow-y: auto;
     height:  -webkit-calc(100vh - 100px);
     height:  calc(100vh - 100px);
 }
@@ -23,13 +23,18 @@ table tr th {
 }
 
 @media (max-width: 1080px) and (orientation:portrait){ 
-
-.big{
-    font-size: 1.75rem;
-}
 /* 
-td{
+.navbar{
+    font-size: 1.75rem;
+} */
+/* 
+.big{
     overflow:hidden;
     white-space:nowrap;
 } */
 }
+@media (max-width: 1080px) and (orientation:landscape){ 
+/* table{
+    table-layout: fixed;
+} */
+} 
