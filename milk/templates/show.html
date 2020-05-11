@@ -25,10 +25,9 @@
                 <th>Price</th>
                 <th>Date</th>
                 <th>Status</th>
-            </tr>>
+            </tr>
                 {% for a in order %}
                 <tr class='clickable-show' id="{{ forloop.counter }}" data-toggle="tooltip" data-placement="right" title="Click if paid">
-                <!-- <tr> -->
                     {% csrf_token %}
                         <td class="cell id">{{a.id}}</td>
                         <td>{{ a.name }}</td>
