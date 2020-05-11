@@ -6,18 +6,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>  
     <script src="{% static '/main.js' %}?version=1"></script>  
+    <link rel="stylesheet" type="text/css" href="{% static '/main.css' %}?version=1">
 
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-toggler">
-        <a class="navbar-brand mr-auto">Yogidham Milk Service</a>
-        <a class="navbar-nav  mr-auto text-white" href="../milk/show">All orders</a>
-
+        <a class="navbar-brand">Yogidham Milk Service</a>
+        <a class="nav-link text-white" href="../milk/show">All orders</a>
         <div class="vertical_line"></div>
     </nav>
 
 <div class="row">
     <div class="col-4">
         <div class="h5">Revenue</div>
-        <table class="table table-striped">
+        <table class="table">
             <div class="row Header font-weight-bold bg-secondary text-white">
                 <tr>
                 {% for a in price %}
@@ -30,9 +30,9 @@
                 <td class="cell">{{a.amount}}</th>
             {% endfor %}
            </tr>
-         </table>
-         <div class="h5">Quantity</div>
-        <table class="table table-striped overflow-auto">
+        </table>
+        <div class="h5">Quantity</div>
+        <table class="table">
             <div class="row Header">
                 {% for a in quantity %}
                 <tr>
@@ -44,23 +44,25 @@
         </table>
     </div>
     <div class=col-1></div>
-    <div class="col-7 overflow-auto smooth-scroll">
-        <table class="table table-striped table-hover">
-            <div class="h5">Individual payments</div>
-            <div class="row Header font-weight-bold bg-secondary text-white">
-                <tr>
-                    <th>Name</th>
-                    <th>Amount</th>
+    <div class="col-7">
+        <div class="scrollbar">
+            <table class="table table-striped table-hover">
+                <div class="h5">Individual payments</div>
+                <div class="row Header font-weight-bold bg-secondary text-white">
+                    <tr>
+                        <th>Name</th>
+                        <th>Amount</th>
+                    </tr>
+                </div>
+                {% for a in individual %}
+                <tr class='clickable-row' id="{{ forloop.counter }}" data-toggle="tooltip" data-placement="right" title="Click if paid">
+                    {% csrf_token %}
+                    <td class="cell id">{{a.name}}</td>
+                    <td class="cell">{{a.payment}}</td>
                 </tr>
-            </div>
-            {% for a in individual %}
-            <tr class='clickable-row' id="{{ forloop.counter }}" data-toggle="tooltip" data-placement="right" title="Click if paid">
-                {% csrf_token %}
-                <td class="cell id">{{a.name}}</td>
-                <td class="cell">{{a.payment}}</td>
-            </tr>
-            {% endfor %}
-        </table>
+                {% endfor %}
+            </table>
+        </div>
     </div>
 </div>
 </html>

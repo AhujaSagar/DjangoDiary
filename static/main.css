@@ -1,0 +1,35 @@
+.scrollbar{
+    overflow: auto;
+    height:  -webkit-calc(100vh - 100px);
+    height:  calc(100vh - 100px);
+}
+
+table tr th {
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: #fff;
+    padding: 5px;
+}
+
+.scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+.scrollbar {
+    -ms-overflow-style: none;
+}
+
+@media (max-width: 1080px) { 
+
+.big{
+    font-size: 1.75rem;
+}
+
+td{
+    overflow:hidden;
+    white-space:nowrap;
+}
+}
