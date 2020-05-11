@@ -22,7 +22,7 @@ table tr th {
     -ms-overflow-style: none;
 }
 
-@media (max-width: 1080px) { 
+@media (max-width: 1080px) and (orientation:portrait){ 
 
 .big{
     font-size: 1.75rem;
