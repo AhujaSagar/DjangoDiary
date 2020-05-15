@@ -39,7 +39,9 @@ def retrieve(request):
         price = request.POST.get('price')
         society = request.POST.get('society')
 
-        
+        if society=='None':
+            society='Sapphire'
+            
         response_data['name'] = name
         response_data['qty'] = qty
 
@@ -73,7 +75,10 @@ def post(request):
         choice = request.POST.get('choice')
         qty = request.POST.get('qty')
         price = request.POST.get('price')
-    
+
+        if society=='None':
+            society='Sapphire'
+
         response_data['name'] = name
         response_data['qty'] = qty
 
@@ -114,9 +119,11 @@ def orderpay(request):
         return JsonResponse(response_data)
         
 def delete(request):
-    response_data = {}
-
-    Order.objects.all().delete()
+    temp=Order.objects.all().filter(society= 'None')
+    for i in temp:
+        i.society = 'Sapphire'
+        i.save()
+    # Order.objects.all().delete()
     return HttpResponse('done')
 
 def analyse(request):
