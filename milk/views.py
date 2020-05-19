@@ -24,7 +24,7 @@ def show(request):
     yesterday_start = datetime.combine(yesterday, time())
     today_end = datetime.combine(tomorrow, time())
 
-    order = Order.objects.all().filter(date__gte=yesterday_start, date__lte=today_end).order_by('-date')
+    order = Order.objects.all().filter(date__lte=today_end).order_by('-date')
     return render(request, 'show.html', {'order':order})   
 
 def retrieve(request):
@@ -132,8 +132,8 @@ def analyse(request):
     today_start = datetime.combine(today, time())
     today_end = datetime.combine(tomorrow, time())
 
-    price=Order.objects.values('status').annotate(amount=Sum('price')).filter(date__lte=today_end, date__gte=today_start)
-    quantity=Order.objects.values('milk_choice').annotate(quantity=Sum('quantity')).filter(date__lte=today_end, date__gte=today_start)
-    individual=Order.objects.values('name').annotate(payment=Sum('price')).filter(date__lte=today_end, date__gte=today_start,status="unpaid")
+    price=Order.objects.values('status').annotate(amount=Sum('price')).filter(date__lte=today_end)
+    quantity=Order.objects.values('milk_choice').annotate(quantity=Sum('quantity')).filter(date__lte=today_end)
+    individual=Order.objects.values('name').annotate(payment=Sum('price')).filter(date__lte=today_end,status="unpaid")
 
     return render(request, 'summary.html', {'quantity':list(quantity),'price':list(price),'individual':list(individual)})
